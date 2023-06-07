@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../css/style.css">
+	<title>Задание 1</title>
+</head>
+<body>
+	<header class="tasks">
+		<nav class="tasks__nav">
+			<ul class="tasks__list">
+				<li class="tasks__item">
+					<a href="../index.html" class="tasks__link">Главная</a>
+				</li>
+				<li class="tasks__item">
+					<a href="#" class="tasks__link">Задание 1</a>
+				</li>
+				<li class="tasks__item">
+					<a href="./task2.html" class="tasks__link">Задание 2</a>
+				</li>
+				<li class="tasks__item">
+					<a href="./task3.html" class="tasks__link">Задание 3</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<div class="task">
+		<div class="task__container">
+			<div class="task__description"></div>
+			<div class="task__solution">
+				<button id="buttonFirst" class="task__button button">
+					<div id="iconOnState" class="button__icon"></div>
+				</button>
+				<span class="button__description">Переключение иконки осуществляется через а-ля "useState"</span>
+			</div>
+			<div class="task__solution">
+				<button id="buttonSecond" class="task__button button">
+					<div id="iconOnCss" class="button__icon_initial"></div>
+				</button>
+				<span class="button__description">Переключение иконки осуществляется через смену классов CSS</span>
+			</div>
+			<!-- <div class="task__solution">
+				<button id="buttonThird" class="task__button button">
+					<div id="iconOnHtml" class="button__icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-down-left-circle" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-5.904-2.854a.5.5 0 1 1 .707.708L6.707 9.95h2.768a.5.5 0 1 1 0 1H5.5a.5.5 0 0 1-.5-.5V6.475a.5.5 0 1 1 1 0v2.768l4.096-4.097z"/>
+						</svg>
+					</div>
+				</button>
+				<span class="button__description">Переключение иконки осуществляется через смену классов CSS</span>
+			</div> -->
+		</div>
+	</div>
+	<script type="module" src="../js/task1.js"></script>
+</body>
+</html>

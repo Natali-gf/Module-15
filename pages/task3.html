@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../css/style.css">
+	<title>Задание 3</title>
+</head>
+<body>
+	<header class="tasks">
+		<nav class="tasks__nav">
+			<ul class="tasks__list">
+				<li class="tasks__item">
+					<a href="../index.html" class="tasks__link">Главная</a>
+				</li>
+				<li class="tasks__item">
+					<a href="./task1.html" class="tasks__link">Задание 1</a>
+				</li>
+				<li class="tasks__item">
+					<a href="./task2.html" class="tasks__link">Задание 2</a>
+				</li>
+				<li class="tasks__item">
+					<a href="#" class="tasks__link">Задание 3</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<div >
+		<div class="task">
+			<div class="task__container">
+				<div class="task__description"></div>
+				<div class="task__chat chat" action="">
+					<div class="chat__messages"></div>
+					<div class="chat__actions">
+						<label class="chat__label" for="inputChat"></label>
+						<input class="chat__input" id="inputChat" type="text" placeholder="Введите сообщение">
+						<button id="buttonSend" class="task__button">Отправить</button>
+						<button id="buttonGeo" class="task__button">Отправить</button>
+					</div>
+				</div>
+				<div id="result" class="task__result result" type="submit"></div>
+			</div>
+		</div>
+	</div>
+	<script type="module" src="../js/task3.js"></script>
+</body>
+</html>

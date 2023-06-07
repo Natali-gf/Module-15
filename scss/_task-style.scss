@@ -1,0 +1,117 @@
+.task {
+	background: linear-gradient( rgba(1, 116, 96, 0.7), rgba(195, 250, 236, 0.027),);
+	&__container {
+		max-width: 1100px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 0 auto;
+		padding: 20px;
+	}
+	&__description {
+		color: rgb(240, 255, 252);
+		font-size: 18px;
+		text-align: center;
+		text-shadow: 2px 2px 5px rgb(7, 94, 86);
+		margin-bottom: 10px;
+		&_link {
+			color: rgb(7, 94, 86);
+			font-weight: 600;
+		}
+		&_detail {
+			color: rgb(7, 94, 86);
+			list-style: none;
+			font-style: italic;
+			font-size: 16px;
+			line-height: 20px;
+			font-weight: 600;
+			text-shadow: 1px 1px 20px rgb(241, 255, 254);
+		}
+	}
+	&__solution {
+		display: grid;
+		grid-template-columns: 1fr minmax(350px, 500px);
+		grid-template-rows: 1fr;
+		align-items: center;
+		justify-content: start;
+		color: rgb(5, 77, 68);
+	}
+	&__fake-text{
+		text-align: center;
+		line-height: 30px;
+	}
+	// &__form {
+	// 	display: flex;
+	// 	flex-direction: column;
+	// 	align-items: center;
+	// 	padding: 20px;
+	// }
+	// &__label {
+	// 	font-size: 30px;
+	// 	width: 400px;
+	// 	text-align: center;
+	// 	color: rgb(55, 77, 69);
+	// }
+	// &__input {
+	// 	outline: none;
+	// 	border: none;
+	// 	height: 40px;
+	// 	width: 200px;
+	// 	margin: 20px;
+	// 	border-radius: 25px;
+	// 	font-size: 20px;
+	// 	text-align: center;
+	// }
+	&__button {
+		padding: 10px 20px;
+		margin: 10px;
+	}
+// 	&__error {
+// 		font-size: 20px;
+// 		font-weight: 700;
+// 		color: rgb(196, 12, 12);
+// 	}
+}
+
+hr {
+	border: 1px solid rgb(7, 94, 86);
+	margin: 20px;
+}
+
+
+
+
+// .result {
+// 	display: flex;
+// 	flex-wrap: wrap;
+// 	justify-content: space-around;
+// 	width: 100%;
+// 	&__box {
+// 		display: flex;
+// 		flex-direction: column;
+// 	}
+// 	&__image {
+// 		border-radius: 5px;
+// 		margin: 50px 0 0;
+// 		&_task4 {
+// 			transform: scale(1.5);
+// 			border: 20px double rgba(1, 78, 65, 0.801);
+// 			margin: 100px 0 0;
+// 		}
+// 	}
+// 	&__author {
+// 		margin: -22.5px 0 0 0;
+// 		font-style: italic;
+// 		font-size: 18px;
+// 		text-align: right;
+// 		width: fit-content;
+// 		background: linear-gradient(rgba(171, 255, 234, 0.925), rgba(45, 145, 128, 0.856));
+// 		box-shadow: 2px -2px 5px rgba(177, 255, 235, 0.712);
+// 		color: rgb(1, 59, 50);
+// 		padding: 0 10px;
+// 		border-radius: 2px;
+// 	}
+// }
+
+
+
