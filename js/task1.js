@@ -8,6 +8,7 @@ textDescription.innerHTML = taskOne.description
 															class="task__description_link" target="_blank">icon_02</a>`)
 console.log(taskOne.description);
 
+
 //? Solution 1
 const iconOnStatement = document.getElementById('iconOnState')
 const buttonFirst = document.getElementById('buttonFirst')
@@ -33,3 +34,10 @@ const iconOnCss = document.getElementById('iconOnCss')
 const buttonSecond = document.getElementById('buttonSecond')
 
 buttonSecond.addEventListener('click', () => iconOnCss.classList.toggle('button__icon_invert'))
+
+
+//? Solution 3 with CSS + svg in HTML
+const iconOnHtml = document.getElementById('iconOnHtml')
+const buttonThird = document.getElementById('buttonThird')
+
+buttonThird.addEventListener('click', () => iconOnHtml.classList.toggle('button__icon_reverse'))
