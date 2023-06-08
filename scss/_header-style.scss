@@ -10,9 +10,9 @@
 	}
 	&__link {
 		display: inline-block;
-		font-size: 30px;
+		font-size: 24px;
 		border-radius: 8px;
-		padding: 10px 30px;
+		padding: 10px 20px;
 		color:rgba(1, 78, 65, 0.801);
 		width: fit-content;
 		white-space: nowrap;
@@ -24,7 +24,7 @@
 		&::after {
 			content: '';
 			display: block;
-			height: 3px;
+			height: 2.1px;
 			width: 100%;
 			background: rgba(1, 78, 65, 0.801);
 			box-shadow: 1px 1px 8px rgba(189, 250, 235, 0.623);

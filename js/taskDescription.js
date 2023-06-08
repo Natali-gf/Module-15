@@ -21,7 +21,13 @@ const tasks = {
 		detailThree: "Эхо-сервер будет отвечать вам тем же сообщением, его также необходимо выводить в чат.",
 		descriptionItemTwo: "Добавить в чат механизм отправки геолокации:",
 		detailFour: "При клике на кнопку «Геолокация» необходимо отправить данные серверу и вывести в чат ссылку на https://www.openstreetmap.org/ с вашей геолокацией. Сообщение, которое отправит обратно эхо-сервер, выводить не нужно.",
-		url: "https://www.openstreetmap.org/"
+		url: "https://www.openstreetmap.org/",
+		webSocketUri: "wss://echo-ws-service.herokuapp.com/",
+		emptyInput: "Ой, кажется вы ничего не ввели...",
+		locationDenied: 'Для определения вашего местоположения включите геоданные в вашем устройстве/браузере',
+		locationUnavailable: 'Невозможно определить ваше местоположение',
+		locationNotSupport: 'Ваше устройство не поддерживает геолокацию',
+		// startMessage: ""
 	}
 }
 
