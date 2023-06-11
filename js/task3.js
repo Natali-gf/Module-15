@@ -34,6 +34,7 @@ inputChat.addEventListener('keydown', (e) => {
 showMessage(taskThree.startMessage, getTime(), 'server')
 
 let websocket;
+// function return promise, set connection with the server and handles the connection error
 setConnection()
 function setConnection(){
 	return new Promise(function(resolve){
@@ -41,22 +42,15 @@ function setConnection(){
 		websocket.onopen = function() {
 			resolve();
 		};
-		websocket.onmessage = (e) => {
-			let message = e.data;
-				if(checkRadioInput() === 'inputUppercase'){
-					message = message.toUpperCase();
-				}else if(checkRadioInput() === 'inputLowercase'){
-					message = message.toLowerCase();
-				}
-			loading.style.display = 'none';
-			showMessage(message, getTime(), e);
-		};
 		websocket.onerror = (e) => {
-			showMessage(`ERROR: ${e.data}`, getTime(), e);
+			console.log('Error: websocket.readyState', websocket.readyState);
+			console.log('Error: event', e);
+			showMessage(taskThree.errorMessage, getTime(), e);
 		};
 	})
 }
 
+// async function on event on the button 'send'
 async function sendMessage(e){
 	showMessage(inputChat.value, getTime(), e);
 	if (inputChat.value === ''){
@@ -73,9 +67,25 @@ async function sendMessage(e){
 		}
 	}
 	websocket.send(inputChat.value);
+	getResponse()
 	inputChat.value = '';
 };
 
+// getting a response from the server and processing it
+function getResponse(){
+	websocket.onmessage = (e) => {
+		let message = e.data;
+			if(checkRadioInput() === 'inputUppercase'){
+				message = message.toUpperCase();
+			}else if(checkRadioInput() === 'inputLowercase'){
+				message = message.toLowerCase();
+			}
+		loading.style.display = 'none';
+		showMessage(message, getTime(), e);
+	};
+}
+
+// show messages in the chat
 function showMessage(message, time, e){
 	let messageBox = document.createElement("div");
 	let messageTime = document.createElement("span");
@@ -95,6 +105,7 @@ function showMessage(message, time, e){
 	messageBox.scrollIntoView();
 }
 
+// getting a position and processing it
 function getPosition(){
 	let message;
 	if (navigator.geolocation) {
@@ -105,6 +116,15 @@ function getPosition(){
 						Ваше местоположение
 					</a>`;
 			showMessage(message, getTime(), 'server');
+			websocket.send(coords)
+
+			//? ВОПРОС
+			//? удалить метод 'onmessage' я ведь не могу?
+			//? поэтому перезаписываю, но я бы лучше уже выводила в нём переменную 'message', ведь сервер всё равно уже отдал ответ
+			//? ещё можно создать другое соединение, но не думаю, что это правильно здесь, когда уже открыто одно, незачем ведь открывать другое?
+
+			websocket.onmessage = () => {}
+
 		}, 	function(error){
 				if(error.PERMISSION_DENIED){
 					message = taskThree.locationDenied;
@@ -119,6 +139,7 @@ function getPosition(){
 	}
 }
 
+// check checked settings
 function checkRadioInput(){
 	let checkedRadio;
 	inputSettings.forEach(elem => {
