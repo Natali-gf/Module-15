@@ -16,76 +16,84 @@ textDescription.innerHTML = `
 
 //? Solution
 
-const buttonSend = document.getElementById('buttonSend')
-const buttonGeo = document.getElementById('buttonGeo')
-const windowMessages = document.querySelector('.chat__messages')
+const buttonSend = document.getElementById('buttonSend');
+const buttonGeo = document.getElementById('buttonGeo');
+const windowMessages = document.querySelector('.chat__messages');
+const inputChat = document.getElementById('inputChat');
+const loading = document.querySelector('.loading');
+const inputSettings = document.querySelectorAll('.settings__input')
 
 buttonSend.addEventListener('click', sendMessage);
 buttonGeo.addEventListener('click', getPosition);
-document.addEventListener('keydown', (e) => {
+inputChat.addEventListener('keydown', (e) => {
 	if(e.code === 'Enter'){
-		sendMessage();
+		sendMessage(e);
 	}
 })
+
+showMessage(taskThree.startMessage, getTime(), 'server')
 
 let websocket;
 setConnection()
 function setConnection(){
-	websocket = new WebSocket(taskThree.webSocketUri);
-	websocket.onopen = function(e) {
-		// showServerMessage('mess', new Date().toTimeString().substring(0, 5));
-	};
-	websocket.onmessage = (e) => {
-		showServerMessage(e.data, new Date().toTimeString().substring(0, 5))
-	};
-	websocket.onerror = (e) => {
-		showServerMessage(`ERROR: ${e.data}`, new Date().toTimeString().substring(0, 5))
-	};
+	return new Promise(function(resolve){
+		websocket = new WebSocket(taskThree.webSocketUri);
+		websocket.onopen = function() {
+			resolve();
+		};
+		websocket.onmessage = (e) => {
+			let message = e.data;
+				if(checkRadioInput() === 'inputUppercase'){
+					message = message.toUpperCase();
+				}else if(checkRadioInput() === 'inputLowercase'){
+					message = message.toLowerCase();
+				}
+			loading.style.display = 'none';
+			showMessage(message, getTime(), e);
+		};
+		websocket.onerror = (e) => {
+			showMessage(`ERROR: ${e.data}`, getTime(), e);
+		};
+	})
 }
 
-function showUserMessage(message, time, e){
-	let messageBox = document.createElement("div");
-		messageBox.classList.add('chat__user-message', 'user-message')
-	let messageTime = document.createElement("span");
-		messageTime.classList.add('user-message__time')
-		messageTime.innerHTML = time;
-	messageBox.append(messageTime)
-	let messageText = document.createElement("div");
-		messageText.classList.add('user-message__text')
-		messageText.innerHTML = message;
-	messageBox.append(messageText)
-	windowMessages.appendChild(messageBox);
-	// if(e.target === buttonSend){}
-}
-
-function showServerMessage(message, time){
-	let messageBox = document.createElement("div");
-		messageBox.classList.add('chat__server-message', 'server-message')
-	let messageTime = document.createElement("span");
-		messageTime.classList.add('server-message__time')
-		messageTime.innerHTML = time;
-	messageBox.append(messageTime)
-	let messageText = document.createElement("div");
-		messageText.classList.add('server-message__text')
-		messageText.innerHTML = message;
-	messageBox.append(messageText)
-	windowMessages.appendChild(messageBox);
-	messageBox.scrollIntoView()
-}
-
-function sendMessage(){
-	if(websocket.readyState === 3){
-		setConnection()
-	}
-	let inputValue = document.getElementById('inputChat');
-	showUserMessage(inputValue.value, new Date().toTimeString().substring(0, 5));
-	if (inputValue.value === ''){
-		websocket.send(taskThree.emptyInput);
+async function sendMessage(e){
+	showMessage(inputChat.value, getTime(), e);
+	if (inputChat.value === ''){
+		showMessage(taskThree.emptyInput, getTime(), 'server');
 		return;
 	}
-	websocket.send(inputValue.value);
-	inputValue.value = ''
+	loading.style.display = 'flex';
+	if(websocket.readyState === 3){
+		try{
+			await setConnection()
+		} catch{
+			console.log('Error: websocket.readyState', websocket.readyState);
+			showMessage(taskThree.errorMessage, getTime(), 'server');
+		}
+	}
+	websocket.send(inputChat.value);
+	inputChat.value = '';
 };
+
+function showMessage(message, time, e){
+	let messageBox = document.createElement("div");
+	let messageTime = document.createElement("span");
+		messageTime.classList.add('message__time');
+		messageTime.innerHTML = time;
+	messageBox.append(messageTime);
+	let messageText = document.createElement("div");
+		messageText.classList.add('message__text');
+		messageText.innerHTML = message;
+	messageBox.append(messageText);
+	windowMessages.appendChild(messageBox);
+		if(e.target === buttonSend || e.target === inputChat){
+			messageBox.classList.add('chat__user-message', 'message');
+		} else {
+			messageBox.classList.add('chat__server-message', 'message');
+		}
+	messageBox.scrollIntoView();
+}
 
 function getPosition(){
 	let message;
@@ -95,19 +103,35 @@ function getPosition(){
 			message = `<a class=""
 					href="https://www.openstreetmap.org/#map=18/${coords.latitude}/${coords.longitude}" target="_blank">
 						Ваше местоположение
-					</a>`
-			showServerMessage(message, new Date().toTimeString().substring(0, 5))
+					</a>`;
+			showMessage(message, getTime(), 'server');
 		}, 	function(error){
 				if(error.PERMISSION_DENIED){
 					message = taskThree.locationDenied;
 				} else if (error.POSITION_UNAVAILABLE) {
 					message = taskThree.locationUnavailable;
 				}
-			showServerMessage(message, new Date().toTimeString().substring(0, 5))
+			showMessage(message, getTime(), 'server');
 		});
 	} else {
 		message = taskThree.locationNotSupport;
-		showServerMessage(message, new Date().toTimeString().substring(0, 5))
+		showMessage(message, getTime(), 'server');
 	}
+}
 
+function checkRadioInput(){
+	let checkedRadio;
+	inputSettings.forEach(elem => {
+		if(elem.checked){
+			return checkedRadio = elem.id;
+		}
+	})
+	return checkedRadio;
+}
+
+//* HELPERS
+
+function getTime(){
+	let time = new Date().toTimeString().substring(0, 5);
+	return time;
 }

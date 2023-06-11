@@ -31,10 +31,18 @@
 			<div class="task__container">
 				<div class="task__description"></div>
 				<div class="task__chat chat">
+					<div class="chat__settings settings">
+						<input id="inputUppercase" class="settings__input" type="radio" name="settings"></input>
+						<label class="settings__label settings__label_uppercase" for="inputUppercase" title="Перевести текст в верхний регистр">A</label>
+						<input id="inputLowercase" class="settings__input" type="radio" name="settings"></input>
+						<label class="settings__label settings__label_lowercase" for="inputLowercase" title="Перевести текст в нижний регистр">a</label>
+					</div>
 					<div class="chat__messages"></div>
 					<div class="chat__actions">
-						<!-- <label class="chat__label" for="inputChat"></label> -->
-						<input class="chat__input" id="inputChat" placeholder="Введите сообщение">
+						<ul class="loading">
+							<li></li><li></li><li></li>
+						</ul>
+						<input class="chat__input" id="inputChat" type="text" placeholder="Введите сообщение" >
 						<button id="buttonSend" class="chat__button button">Отправить</button>
 						<button id="buttonGeo" class="chat__button button">Геолокация</button>
 					</div>

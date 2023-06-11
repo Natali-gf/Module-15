@@ -6,7 +6,6 @@ textDescription.innerHTML = taskOne.description
 															class="task__description_link" target="_blank">icon_01</a>`)
 									.replace('icon_02', `<a href="${taskOne.urlIconTwo}"
 															class="task__description_link" target="_blank">icon_02</a>`)
-console.log(taskOne.description);
 
 
 //? Solution 1

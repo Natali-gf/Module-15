@@ -43,35 +43,41 @@
 	display: flex
 	flex-direction: column
 	background: linear-gradient(rgba(223, 255, 252, 0.7), rgba(20, 110, 95, 0.733))
-	// border: 5px dotted rgba(19, 116, 99, 0.801)
 	border-radius: 2px
 	box-shadow: 2px 2px 6px 1px rgb(47, 97, 92)
 	max-width: 420px
+	min-width: 211px
 	&__messages
 		display: flex
 		flex-direction: column
-		flex: 1 1 auto
-		height: 300px
-		min-width: 420px
+		align-items: flex-start
+		height: 350px
 		overflow-y: scroll
 		position: relative
+		margin: 0 0 12px 0
 		&::-webkit-scrollbar-thumb
 			background-color: rgb(47, 97, 92)
 		&::-webkit-scrollbar
 			width: 6px
 	&__user-message
+		background: rgb(251, 252, 234)
 		padding: 5px 10px
 		align-self: flex-end
 		margin: 3px 10px
+		text-align: right
 	&__server-message
+		background: rgba(198, 240, 226, 0.856)
 		padding: 5px 10px
 		margin: 3px 10px
 	&__actions
 		display: flex
 		justify-content: space-between
 		align-items: center
-		height: 40px
+		min-height: 40px
 		margin: 0 10px
+		position: relative
+		flex-wrap: wrap
+		gap: 0 5px
 	&__input
 		flex: 1 1 auto
 		background: rgba(229, 255, 246, 0.979)
@@ -80,6 +86,7 @@
 		border: none
 		padding: 3.5px 5px
 		box-shadow: .5px .5px 3px .5px rgb(47, 97, 92)
+		margin: 5px 0
 	&__button
 		font-size: 16px
 		padding: 5px
@@ -88,32 +95,57 @@
 		border-radius: 2px
 		box-shadow: 2px 2px 6px 1px rgb(47, 97, 92)
 		&:hover
-			padding: 5px 4px
+			padding: 4px
+	&__settings
+		margin-right: 8px
 
-.server-message
+.message
 	border: 1px solid rgb(47, 97, 92)
 	border-radius: 5px
-	width: fit-content
 	box-shadow: .5px .5px 3px .3px rgb(47, 97, 92)
-	background: rgba(198, 240, 226, 0.856)
 	&__time
 		color: rgb(87, 99, 97)
 		font-size: 11px
 	&__text
 		min-height: 18px
-		max-width: 400px
 		font-size: 16px
 
-.user-message
-	border: 1px solid rgb(47, 97, 92)
-	border-radius: 5px
-	width: fit-content
-	box-shadow: .5px .5px 3px .3px rgb(47, 97, 92)
-	background: rgb(251, 252, 234)
-	&__time
-		color: rgb(87, 99, 97)
-		font-size: 11px
-	&__text
-		min-height: 18px
-		max-width: 400px
-		font-size: 16px
+.settings
+	display: flex
+	justify-content: flex-end
+	height: 26px
+	&__input
+		position: absolute
+		z-index: -1
+		opacity: 0
+	&__label
+		display: flex
+		align-items: center
+		width: 30px
+		font-size: 18px
+		margin: 0 3px
+		position: relative
+		&:hover
+			color: rgb(5, 70, 63)
+			text-shadow: .5px .5px 1.5px rgb(7, 94, 86)
+		&_uppercase
+			&::after
+				content: ""
+				background: url(../images/arrow.svg)
+				background-size: 15px 15px
+				display: block
+				height: 15px
+				width: 15px
+		&_lowercase
+			&::after
+				content: ''
+				background: url(../images/arrow.svg)
+				background-size: 15px 15px
+				rotate: 180deg
+				display: block
+				height: 15px
+				width: 15px
+.settings__input:checked + .settings__label
+	font-size: 22px
+	color: rgb(5, 70, 63)
+	text-shadow: 1.5px 1.5px 2px rgb(7, 94, 86)
