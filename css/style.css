@@ -303,7 +303,7 @@ hr {
   padding: 4px;
 }
 .chat__settings {
-  margin-right: 8px;
+  margin-right: 15px;
 }
 
 .message {
@@ -333,31 +333,36 @@ hr {
 .settings__label {
   display: flex;
   align-items: center;
-  width: 30px;
+  justify-content: flex-end;
+  width: -moz-fit-content;
+  width: fit-content;
   font-size: 18px;
   margin: 0 3px;
   position: relative;
 }
 .settings__label:hover {
+  cursor: pointer;
   color: rgb(5, 70, 63);
   text-shadow: 0.5px 0.5px 1.5px rgb(7, 94, 86);
 }
 .settings__label_uppercase::after {
   content: "";
   background: url(../images/arrow.svg);
-  background-size: 15px 15px;
-  display: block;
-  height: 15px;
-  width: 15px;
 }
 .settings__label_lowercase::after {
   content: "";
   background: url(../images/arrow.svg);
-  background-size: 15px 15px;
   rotate: 180deg;
+}
+.settings__label_reset::after {
+  content: "";
+  background: url(../images/reset.svg);
+}
+.settings__label_uppercase::after, .settings__label_lowercase::after, .settings__label_reset::after {
   display: block;
   height: 15px;
   width: 15px;
+  background-size: 15px 15px;
 }
 
 .settings__input:checked + .settings__label {
