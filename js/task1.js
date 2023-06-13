@@ -11,7 +11,7 @@ textDescription.innerHTML = taskOne.description
 //? Solution 1
 const iconOnStatement = document.getElementById('iconOnState')
 const buttonFirst = document.getElementById('buttonFirst')
-let iconState = true; //! идея из хука useState в Реакте, так вообще корректно делать в обычном JS??
+let iconState = true;
 
 buttonFirst.addEventListener('click', toggleIcon)
 toggleIcon()
@@ -28,7 +28,6 @@ function toggleIcon() {
 
 
 //? Solution 2 with CSS
-//только насколько мне известно нельзя изменить цвет svg-иконки, которая лежит в css
 const iconOnCss = document.getElementById('iconOnCss')
 const buttonSecond = document.getElementById('buttonSecond')
 
